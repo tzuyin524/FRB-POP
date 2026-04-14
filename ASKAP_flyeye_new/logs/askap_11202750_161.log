@@ -1,0 +1,26 @@
+Running: run_askap_z1.62_1.63.py
+Starting redshift chunk: z = 1.62 to 1.63
+Processing 1 redshift bins...
+
+Saved: dm_detected_askap_z1.62_1.63.npy
+  Total FRB points: 987535
+  Detected (SNR>10): 80
+
+Chunk completed in 110.51 seconds
+Time per FRB: 0.1119 ms
+
++------------------ Job Report: 11202921 (COMPLETED) ------------------+
+| Memory (RAM)  [                    ]  1.1% (184 MB peak / 16 GB)     |
+| CPU           [##################  ] 90.1% average                   |
+| Time          [>                   ]  2.4% (0-00:02:11 / 0-01:30:00) |
+|                                                                      |
+| Lustre Filesystem:                                                   |
+|   Path    Total Read    Total Write      Total IOPS                  |
+|   ------  ------------  -------------  ------------                  |
+|   /apps   0 B           0 B                     42                   |
+|   /fred   8 KB          33 B                     4                   |
+|                                                                      |
+| Warnings:                                                            |
+|   - Too much memory requested                                        |
+|   - Too much time requested                                          |
++----------------------------------------------------------------------+

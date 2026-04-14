@@ -1,0 +1,10 @@
+Running: run_askap_z0.44_0.45.py
+Starting redshift chunk: z = 0.44 to 0.45
+Processing 2 redshift bins...
+
+Saved: dm_detected_askap_z0.44_0.45.npy
+  Total FRB points: 581137
+  Detected (SNR>10): 2243
+
+Chunk completed in 68.21 seconds
+Time per FRB: 0.1174 ms

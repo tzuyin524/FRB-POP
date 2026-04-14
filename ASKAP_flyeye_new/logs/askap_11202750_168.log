@@ -1,0 +1,210 @@
+Running: run_askap_z1.69_1.70.py
+Starting redshift chunk: z = 1.69 to 1.70
+Processing 2 redshift bins...
+
+Saved: dm_detected_askap_z1.69_1.70.npy
+  Total FRB points: 1912107
+  Detected (SNR>10): 123
+
+Chunk completed in 243.82 seconds
+Time per FRB: 0.1275 ms
+Combining all DM arrays...
+
+Combining all DM arrays from redshift chunks...
+Found 169 files
+  dm_detected_askap_z0.01_0.02.npy: 174 points
+  dm_detected_askap_z0.02_0.03.npy: 657 points
+  dm_detected_askap_z0.03_0.04.npy: 4067 points
+  dm_detected_askap_z0.04_0.05.npy: 6667 points
+  dm_detected_askap_z0.05_0.06.npy: 4066 points
+  dm_detected_askap_z0.06_0.07.npy: 13841 points
+  dm_detected_askap_z0.07_0.08.npy: 7982 points
+  dm_detected_askap_z0.08_0.09.npy: 10434 points
+  dm_detected_askap_z0.09_0.10.npy: 29538 points
+  dm_detected_askap_z0.10_0.11.npy: 16323 points
+  dm_detected_askap_z0.11_0.12.npy: 19757 points
+  dm_detected_askap_z0.12_0.13.npy: 51107 points
+  dm_detected_askap_z0.13_0.14.npy: 59582 points
+  dm_detected_askap_z0.14_0.15.npy: 31989 points
+  dm_detected_askap_z0.15_0.16.npy: 78422 points
+  dm_detected_askap_z0.16_0.17.npy: 88773 points
+  dm_detected_askap_z0.17_0.18.npy: 47051 points
+  dm_detected_askap_z0.18_0.19.npy: 111295 points
+  dm_detected_askap_z0.19_0.20.npy: 123446 points
+  dm_detected_askap_z0.20_0.21.npy: 64834 points
+  dm_detected_askap_z0.21_0.22.npy: 149477 points
+  dm_detected_askap_z0.22_0.23.npy: 163334 points
+  dm_detected_askap_z0.23_0.24.npy: 85200 points
+  dm_detected_askap_z0.24_0.25.npy: 192671 points
+  dm_detected_askap_z0.25_0.26.npy: 208126 points
+  dm_detected_askap_z0.26_0.27.npy: 224088 points
+  dm_detected_askap_z0.27_0.28.npy: 240542 points
+  dm_detected_askap_z0.28_0.29.npy: 124445 points
+  dm_detected_askap_z0.29_0.30.npy: 274871 points
+  dm_detected_askap_z0.30_0.31.npy: 292718 points
+  dm_detected_askap_z0.31_0.32.npy: 311000 points
+  dm_detected_askap_z0.32_0.33.npy: 329701 points
+  dm_detected_askap_z0.33_0.34.npy: 348806 points
+  dm_detected_askap_z0.34_0.35.npy: 179229 points
+  dm_detected_askap_z0.35_0.36.npy: 388167 points
+  dm_detected_askap_z0.36_0.37.npy: 408392 points
+  dm_detected_askap_z0.37_0.38.npy: 428958 points
+  dm_detected_askap_z0.38_0.39.npy: 449849 points
+  dm_detected_askap_z0.39_0.40.npy: 471050 points
+  dm_detected_askap_z0.40_0.41.npy: 240863 points
+  dm_detected_askap_z0.41_0.42.npy: 514317 points
+  dm_detected_askap_z0.42_0.43.npy: 536350 points
+  dm_detected_askap_z0.43_0.44.npy: 558629 points
+  dm_detected_askap_z0.44_0.45.npy: 581137 points
+  dm_detected_askap_z0.45_0.46.npy: 603859 points
+  dm_detected_askap_z0.46_0.47.npy: 307636 points
+  dm_detected_askap_z0.47_0.48.npy: 649880 points
+  dm_detected_askap_z0.48_0.49.npy: 673147 points
+  dm_detected_askap_z0.49_0.50.npy: 696565 points
+  dm_detected_askap_z0.50_0.51.npy: 720119 points
+  dm_detected_askap_z0.51_0.52.npy: 743793 points
+  dm_detected_askap_z0.52_0.53.npy: 767572 points
+  dm_detected_askap_z0.53_0.54.npy: 791441 points
+  dm_detected_askap_z0.54_0.55.npy: 815385 points
+  dm_detected_askap_z0.55_0.56.npy: 839389 points
+  dm_detected_askap_z0.56_0.57.npy: 425702 points
+  dm_detected_askap_z0.57_0.58.npy: 887521 points
+  dm_detected_askap_z0.58_0.59.npy: 911620 points
+  dm_detected_askap_z0.59_0.60.npy: 935723 points
+  dm_detected_askap_z0.60_0.61.npy: 959817 points
+  dm_detected_askap_z0.61_0.62.npy: 983888 points
+  dm_detected_askap_z0.62_0.63.npy: 1007922 points
+  dm_detected_askap_z0.63_0.64.npy: 1031906 points
+  dm_detected_askap_z0.64_0.65.npy: 1055827 points
+  dm_detected_askap_z0.65_0.66.npy: 1079673 points
+  dm_detected_askap_z0.66_0.67.npy: 1103433 points
+  dm_detected_askap_z0.67_0.68.npy: 1127093 points
+  dm_detected_askap_z0.68_0.69.npy: 569448 points
+  dm_detected_askap_z0.69_0.70.npy: 1174067 points
+  dm_detected_askap_z0.70_0.71.npy: 1197358 points
+  dm_detected_askap_z0.71_0.72.npy: 1220503 points
+  dm_detected_askap_z0.72_0.73.npy: 1243492 points
+  dm_detected_askap_z0.73_0.74.npy: 1266314 points
+  dm_detected_askap_z0.74_0.75.npy: 1288958 points
+  dm_detected_askap_z0.75_0.76.npy: 1311414 points
+  dm_detected_askap_z0.76_0.77.npy: 1333672 points
+  dm_detected_askap_z0.77_0.78.npy: 1355722 points
+  dm_detected_askap_z0.78_0.79.npy: 1377555 points
+  dm_detected_askap_z0.79_0.80.npy: 1399162 points
+  dm_detected_askap_z0.80_0.81.npy: 1420533 points
+  dm_detected_askap_z0.81_0.82.npy: 715579 points
+  dm_detected_askap_z0.82_0.83.npy: 1462533 points
+  dm_detected_askap_z0.83_0.84.npy: 1483146 points
+  dm_detected_askap_z0.84_0.85.npy: 1503490 points
+  dm_detected_askap_z0.85_0.86.npy: 1523557 points
+  dm_detected_askap_z0.86_0.87.npy: 1543339 points
+  dm_detected_askap_z0.87_0.88.npy: 1562829 points
+  dm_detected_askap_z0.88_0.89.npy: 1582020 points
+  dm_detected_askap_z0.89_0.90.npy: 1600905 points
+  dm_detected_askap_z0.90_0.91.npy: 1619477 points
+  dm_detected_askap_z0.91_0.92.npy: 1637730 points
+  dm_detected_askap_z0.92_0.93.npy: 1655658 points
+  dm_detected_askap_z0.93_0.94.npy: 832270 points
+  dm_detected_askap_z0.94_0.95.npy: 1690515 points
+  dm_detected_askap_z0.95_0.96.npy: 1707433 points
+  dm_detected_askap_z0.96_0.97.npy: 1724003 points
+  dm_detected_askap_z0.97_0.98.npy: 1740220 points
+  dm_detected_askap_z0.98_0.99.npy: 1756080 points
+  dm_detected_askap_z0.99_1.00.npy: 1771577 points
+  dm_detected_askap_z1.00_1.01.npy: 1786708 points
+  dm_detected_askap_z1.01_1.02.npy: 1801469 points
+  dm_detected_askap_z1.02_1.03.npy: 1815855 points
+  dm_detected_askap_z1.03_1.04.npy: 1829862 points
+  dm_detected_askap_z1.04_1.05.npy: 1843488 points
+  dm_detected_askap_z1.05_1.06.npy: 1856730 points
+  dm_detected_askap_z1.06_1.07.npy: 1869583 points
+  dm_detected_askap_z1.07_1.08.npy: 1882045 points
+  dm_detected_askap_z1.08_1.09.npy: 1894115 points
+  dm_detected_askap_z1.09_1.10.npy: 1905789 points
+  dm_detected_askap_z1.10_1.11.npy: 1917065 points
+  dm_detected_askap_z1.11_1.12.npy: 1927942 points
+  dm_detected_askap_z1.12_1.13.npy: 966640 points
+  dm_detected_askap_z1.13_1.14.npy: 1948490 points
+  dm_detected_askap_z1.14_1.15.npy: 1958159 points
+  dm_detected_askap_z1.15_1.16.npy: 1967422 points
+  dm_detected_askap_z1.16_1.17.npy: 1976280 points
+  dm_detected_askap_z1.17_1.18.npy: 1984732 points
+  dm_detected_askap_z1.18_1.19.npy: 1992776 points
+  dm_detected_askap_z1.19_1.20.npy: 2000412 points
+  dm_detected_askap_z1.20_1.21.npy: 2007642 points
+  dm_detected_askap_z1.21_1.22.npy: 2014465 points
+  dm_detected_askap_z1.22_1.23.npy: 2020881 points
+  dm_detected_askap_z1.23_1.24.npy: 2026892 points
+  dm_detected_askap_z1.24_1.25.npy: 2032497 points
+  dm_detected_askap_z1.25_1.26.npy: 2037698 points
+  dm_detected_askap_z1.26_1.27.npy: 2042496 points
+  dm_detected_askap_z1.27_1.28.npy: 2046892 points
+  dm_detected_askap_z1.28_1.29.npy: 2050889 points
+  dm_detected_askap_z1.29_1.30.npy: 2054488 points
+  dm_detected_askap_z1.30_1.31.npy: 2057690 points
+  dm_detected_askap_z1.31_1.32.npy: 2060498 points
+  dm_detected_askap_z1.32_1.33.npy: 2062915 points
+  dm_detected_askap_z1.33_1.34.npy: 2064942 points
+  dm_detected_askap_z1.34_1.35.npy: 2066582 points
+  dm_detected_askap_z1.35_1.36.npy: 2067839 points
+  dm_detected_askap_z1.36_1.37.npy: 2068716 points
+  dm_detected_askap_z1.37_1.38.npy: 1034530 points
+  dm_detected_askap_z1.38_1.39.npy: 2069339 points
+  dm_detected_askap_z1.39_1.40.npy: 2069093 points
+  dm_detected_askap_z1.40_1.41.npy: 2068481 points
+  dm_detected_askap_z1.41_1.42.npy: 2067505 points
+  dm_detected_askap_z1.42_1.43.npy: 2066169 points
+  dm_detected_askap_z1.43_1.44.npy: 2064479 points
+  dm_detected_askap_z1.44_1.45.npy: 2062438 points
+  dm_detected_askap_z1.45_1.46.npy: 2060051 points
+  dm_detected_askap_z1.46_1.47.npy: 2057322 points
+  dm_detected_askap_z1.47_1.48.npy: 2054255 points
+  dm_detected_askap_z1.48_1.49.npy: 2050855 points
+  dm_detected_askap_z1.49_1.50.npy: 2047128 points
+  dm_detected_askap_z1.50_1.51.npy: 2043079 points
+  dm_detected_askap_z1.51_1.52.npy: 2038711 points
+  dm_detected_askap_z1.52_1.53.npy: 2034031 points
+  dm_detected_askap_z1.53_1.54.npy: 2029044 points
+  dm_detected_askap_z1.54_1.55.npy: 2023755 points
+  dm_detected_askap_z1.55_1.56.npy: 2018170 points
+  dm_detected_askap_z1.56_1.57.npy: 2012295 points
+  dm_detected_askap_z1.57_1.58.npy: 2006135 points
+  dm_detected_askap_z1.58_1.59.npy: 1999695 points
+  dm_detected_askap_z1.59_1.60.npy: 1992981 points
+  dm_detected_askap_z1.60_1.61.npy: 1985999 points
+  dm_detected_askap_z1.61_1.62.npy: 1978756 points
+  dm_detected_askap_z1.62_1.63.npy: 987535 points
+  dm_detected_askap_z1.63_1.64.npy: 1963508 points
+  dm_detected_askap_z1.64_1.65.npy: 1955515 points
+  dm_detected_askap_z1.65_1.66.npy: 1947284 points
+  dm_detected_askap_z1.66_1.67.npy: 1938822 points
+  dm_detected_askap_z1.67_1.68.npy: 1930134 points
+  dm_detected_askap_z1.68_1.69.npy: 1921227 points
+  dm_detected_askap_z1.69_1.70.npy: 1912107 points
+
+Successfully combined 169 chunks
+Total DM points: 209261407
+Saved to: dm_detected_askap_combined_full.npy
+
+DM Statistics:
+  Min: 10.0
+  Max: 1700.0
+  Mean: 1132.8
+  Median: 1170.0
+
++------------------ Job Report: 11202750 (COMPLETED) ------------------+
+| Memory (RAM)  [                    ]  1.9% (317 MB peak / 16 GB)     |
+| CPU           [##################  ] 91.2% average                   |
+| Time          [->                  ]  5.5% (0-00:04:55 / 0-01:30:00) |
+|                                                                      |
+| Lustre Filesystem:                                                   |
+|   Path    Total Read    Total Write      Total IOPS                  |
+|   ------  ------------  -------------  ------------                  |
+|   /apps   0 B           0 B                     49                   |
+|   /fred   66.5 MB       14 MB                  143                   |
+|   /home   0 B           0 B                      1                   |
+|                                                                      |
+| Warnings:                                                            |
+|   - Too much memory requested                                        |
+|   - Too much time requested                                          |
++----------------------------------------------------------------------+

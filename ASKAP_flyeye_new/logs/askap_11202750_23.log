@@ -1,0 +1,21 @@
+Running: run_askap_z0.24_0.25.py
+Starting redshift chunk: z = 0.24 to 0.25
+Processing 2 redshift bins...
+
+Saved: dm_detected_askap_z0.24_0.25.npy
+  Total FRB points: 192671
+  Detected (SNR>10): 1868
+
+Chunk completed in 21.59 seconds
+Time per FRB: 0.1120 ms
+
++------------------ Job Report: 11202774 (COMPLETED) ------------------+
+| Memory (RAM)  No data available                                      |
+| CPU           [#############       ] 66.0% average                   |
+| Time          [>                   ]  0.9% (0-00:00:47 / 0-01:30:00) |
+|                                                                      |
+| Lustre Filesystem:                                                   |
+|   Path    Total Read    Total Write      Total IOPS                  |
+|   ------  ------------  -------------  ------------                  |
+|   /apps   880 KB        0 B                     36                   |
++----------------------------------------------------------------------+
