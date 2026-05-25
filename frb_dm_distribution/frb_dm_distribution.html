@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Six effects shaping the detected DM distribution of FRBs</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      tags: 'none',
+      macros: {
+        dm: '\\mathrm{DM}',
+        Smin: 'S_{\\mathrm{min}}',
+        Lmin: 'L_{\\mathrm{min}}',
+        Lstar: 'L_\\star',
+        pdet: 'p_{\\mathrm{det}}',
+        Mpc: '\\,\\mathrm{Mpc}',
+        pccm: '\\,\\mathrm{pc\\,cm^{-3}}',
+        WHz: '\\,\\mathrm{W\\,Hz^{-1}}'
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+
+<style>
+  @page { size: A4; margin: 22mm 22mm 22mm 22mm; }
+
+  :root {
+    --fg:        #1a1a1a;
+    --muted:     #5b5b5b;
+    --accent:    #1f3a5f;
+    --rule:      #cccccc;
+    --bg-soft:   #f7f8fa;
+  }
+
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: "Source Serif Pro", "Charter", "Georgia", "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: var(--fg);
+    max-width: 760px;
+    margin: 32px auto;
+    padding: 0 24px;
+    background: white;
+  }
+
+  header.title {
+    margin-top: 12px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+  }
+  h1 {
+    font-size: 21pt;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 8px 0;
+    color: var(--accent);
+    letter-spacing: -0.005em;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 11.5pt;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 10pt;
+    margin-top: 6px;
+  }
+
+  h2 {
+    font-size: 14.5pt;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h2 .num {
+    color: var(--muted);
+    font-weight: 400;
+    margin-right: 10px;
+  }
+  h3 {
+    font-size: 11.8pt;
+    font-weight: 600;
+    margin-top: 18px;
+    margin-bottom: 6px;
+  }
+
+  p { margin: 0 0 10px 0; text-align: justify; }
+
+  .abstract {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    padding: 12px 18px;
+    margin: 18px 0 22px 0;
+    font-size: 10.5pt;
+  }
+  .abstract h3 {
+    margin: 0 0 6px 0;
+    font-size: 11pt;
+    color: var(--accent);
+  }
+
+  figure {
+    margin: 14px 0 18px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  figure img {
+    width: 100%;
+    max-width: 720px;
+    border: 1px solid #e2e2e2;
+    border-radius: 2px;
+  }
+  figcaption {
+    font-size: 9.5pt;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.35;
+    text-align: left;
+    padding: 0 4px;
+  }
+  figcaption .figlabel {
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  table {
+    border-collapse: collapse;
+    margin: 10px auto 16px auto;
+    font-size: 10pt;
+  }
+  th, td {
+    padding: 4px 12px;
+    text-align: right;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    border-top: 1.2px solid var(--fg);
+    border-bottom: 0.6px solid var(--fg);
+  }
+  tbody tr:last-child td {
+    border-bottom: 1.2px solid var(--fg);
+  }
+  caption {
+    caption-side: top;
+    font-size: 9.5pt;
+    color: var(--muted);
+    text-align: left;
+    padding-bottom: 4px;
+  }
+  caption .tablabel { font-weight: 600; color: var(--fg); }
+
+  .boxed-eq {
+    border: 1px solid var(--rule);
+    background: var(--bg-soft);
+    padding: 6px 12px;
+    margin: 12px 0;
+    border-radius: 3px;
+  }
+
+  ul { margin: 4px 0 12px 24px; padding: 0; }
+  li { margin: 3px 0; }
+
+  code, .mono {
+    font-family: "Menlo", "Consolas", monospace;
+    font-size: 9.5pt;
+    background: var(--bg-soft);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+
+  .takeaway {
+    background: #fff8e6;
+    border-left: 3px solid #d49a1a;
+    padding: 8px 14px;
+    margin: 10px 0 14px 0;
+    font-size: 10.5pt;
+  }
+  .takeaway strong { color: #7a5400; }
+
+  .footnote {
+    font-size: 9.5pt;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    margin-top: 30px;
+    padding-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header class="title">
+  <h1>Six effects shaping the detected dispersion-measure
+      distribution of fast radio bursts</h1>
+  <div class="subtitle">A pedagogical toy-model walk-through</div>
+  <div class="meta">Single-dish surveys: ASKAP-like ($D=12$ m), Parkes-like ($D=60$ m), FAST-like ($D=300$ m).</div>
+</header>
+
+<div class="abstract">
+<h3>Summary</h3>
+<p>We build a deliberately minimal model of the cosmological FRB population,
+adding one effect at a time, to expose how each reshapes the
+detected dispersion-measure (DM) distribution. The five dominant
+<em>astrophysical</em> effects are
+<strong>(1) Euclidean geometry</strong>, <strong>(2) the luminosity function</strong>,
+<strong>(3) cosmology</strong>, <strong>(4) the cosmic star-formation history</strong>,
+and <strong>(6) the intrinsic spectral index</strong>; we also include
+<strong>(5) intra-channel DM smearing</strong>, the dominant
+<em>instrumental</em> effect on FRB sensitivity at high DM.
+Three reference single-dish
+telescopes are used throughout, calibrated such that ASKAP would just detect
+a median FRB to $\dm = 1000$ in the bare Euclidean limit and then made four
+times fainter in the population. The six sweeps demonstrate how the survey
+moves between sensitivity-limited and volume-limited regimes, how
+SFR weighting truncates the high-DM tail of volume-limited surveys, how
+DM smearing disproportionately affects intermediate-aperture telescopes,
+and how a steep negative spectral index re-introduces sensitivity limits
+at every diameter.</p>
+</div>
+
+<!-- =========================================================== -->
+<h2><span class="num">1.</span> Euclidean standard candle</h2>
+
+<p>We begin in the simplest possible limit: a uniform-density population of
+identical FRBs in flat, non-expanding space. With intrinsic width
+$w = 1\,\mathrm{ms}$ and spectral luminosity $\Lstar$, the observed flux
+density is $S = \Lstar / (4\pi d^2)$, so a telescope with detection
+threshold $\Smin$ has a hard horizon</p>
+
+<div class="boxed-eq">
+$$d_{\max} \;=\; \sqrt{\Lstar / 4\pi\Smin} \;\propto\; \Smin^{-1/2} \;\propto\; D,$$
+</div>
+
+<p>where the radiometer equation $\Smin \propto D^{-2}$ gives the diameter
+scaling. The expected number of detections per unit distance grows as
+$dN/dr \propto r^2$ from the uniform density of the population, so the
+detected DM distribution (with $\dm \propto d$) is</p>
+
+<div class="boxed-eq">
+$$\frac{dN}{d\dm} \;\propto\; \dm^2\,\Theta\!\bigl(\dm_{\max} - \dm\bigr),
+\qquad \dm_{\max}\propto D.$$
+</div>
+
+<p>Calibrating the ASKAP horizon to $\dm_{\max}^{\mathrm{ASKAP}} = 1000\pccm$
+gives Parkes a horizon at $\dm_{\max}^{\mathrm{PKS}} = 5000$ and FAST at
+$\dm_{\max}^{\mathrm{FAST}} = 25{,}000$. The integrated event rate scales
+as $R \propto \Omega_{\rm FoV}\,d_{\max}^3 \propto D^{-2}\cdot D^3 = D$:
+linear in diameter, despite the $D^4$ collecting-area gain on volume.</p>
+
+<figure>
+  <img src="figures/fig1_euclidean.png" alt="Euclidean standard candle PDF for three telescopes">
+  <figcaption><span class="figlabel">Figure 1.</span>
+  Detected-DM PDF for a Euclidean standard-candle population. Each curve
+  is sharply truncated at $\dm_{\max} \propto D$. There is no high-DM tail
+  whatsoever &mdash; every FRB beyond the horizon is invisible.</figcaption>
+</figure>
+
+<div class="takeaway"><strong>Takeaway.</strong>
+The Euclidean standard-candle limit gives a hard $\dm^2$ rise to a discrete
+horizon $\propto D$. Real surveys never look like this; the deviations
+are precisely what the next four sections quantify.</div>
+
+<!-- =========================================================== -->
+<h2><span class="num">2.</span> Luminosity function</h2>
+
+<p>FRB luminosities are not standard candles. We adopt a log-normal LF
+in the natural log of the spectral luminosity:</p>
+
+<div class="boxed-eq">
+$$\phi(L)\,dL \;=\; \frac{1}{L\,\sigma\sqrt{2\pi}}
+\exp\!\left[-\frac{(\ln L - \ln \Lstar)^2}{2\sigma^2}\right] dL,$$
+</div>
+
+<p>with median $\Lstar$ and natural-log width $\sigma$. The detection
+probability of a source at distance $d$ is the upper tail of the LF above
+the limiting luminosity at that distance,</p>
+
+<div class="boxed-eq">
+$$\pdet(d) \;=\;
+\frac{1}{2}\,\mathrm{erfc}\!\left[\frac{\ln \Lmin(d) - \ln \Lstar}{\sigma\sqrt{2}}\right],
+\qquad \Lmin(d) = 4\pi d^2 \Smin .$$
+</div>
+
+<p>The hard horizon is replaced by a smooth roll-off whose extent is
+controlled by $\sigma$. In particular, a wider LF (larger $\sigma$) lets
+intrinsically bright bursts be detected from well beyond the
+standard-candle horizon, and the high-DM tail of a sensitivity-limited
+survey directly probes $\sigma$.</p>
+
+<figure>
+  <img src="figures/fig2_lf.png" alt="Euclidean detected DM with log-normal LF">
+  <figcaption><span class="figlabel">Figure 2.</span>
+  As Figure 1 but with a log-normal LF of width $\sigma_{\ln L} = 1/\sqrt{2}$
+  added (still Euclidean, no cosmology). Each cutoff softens into a
+  high-DM tail; FAST's horizon &mdash; previously at $\dm = 25{,}000$ &mdash; is
+  now an unphysically broad smear, which is the cue that we must turn on
+  cosmology before this can mean anything.</figcaption>
+</figure>
+
+<!-- =========================================================== -->
+<h2><span class="num">3.</span> Cosmology</h2>
+
+<p>Two changes follow from doing the geometry properly. First, the
+volume element is no longer Euclidean,</p>
+
+<div class="boxed-eq">
+$$\frac{dV_c}{dz} \;=\; \frac{4\pi c\, D_C^2(z)}{H_0\, E(z)},
+\qquad E(z) = \sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda},$$
+</div>
+
+<p>with comoving distance $D_C(z) = (c/H_0)\!\int_0^z dz'/E(z')$ and
+luminosity distance $D_L(z)=(1+z)D_C(z)$. Second, the spectral flux of a
+source at redshift $z$ acquires a $(1+z)$ factor:
+$S_\nu = (1+z)L_\nu/(4\pi D_L^2)$. With a flat spectrum (deferred to
+section 5), the limiting luminosity is</p>
+
+<div class="boxed-eq">
+$$\Lmin(z) \;=\; 4\pi D_C^2(z)\,(1+z)\,\Smin .$$
+</div>
+
+<p>For the DM--redshift relation we adopt the linear simplification of the
+Macquart relation, $\dm = 1000\,z$. The detected-rate density per unit
+observer time per unit DM is then the master expression</p>
+
+<div class="boxed-eq">
+$$\frac{d\dot N}{d\dm} \;=\;
+\frac{\Omega_{\rm FoV}}{4\pi}\;
+\frac{\Phi(z)}{1+z}\;
+\frac{dV_c}{dz}\;\pdet(z)\;
+\frac{dz}{d\dm}\bigg|_{z=\dm/1000} ,$$
+</div>
+
+<p>where $\Phi(z)$ is the comoving FRB rate density (set to a constant
+$\Phi_0$ in this section) and the $1/(1+z)$ factor is the cosmological
+time dilation of the rate. We henceforth plot the area-normalised
+conditional PDF $p(\dm \mid \mathrm{detected})$, since
+$\Omega_{\rm FoV}$ is independent of DM and cancels in the shape.</p>
+
+<figure>
+  <img src="figures/fig3_cosmology.png" alt="Detected DM with cosmology added">
+  <figcaption><span class="figlabel">Figure 3.</span>
+  Same population now placed in flat $\Lambda$CDM. Cosmology bends the
+  $\dm^2$ rise back over: the volume kernel $(1+z)^{-1}\,dV_c/dz$ peaks
+  at $z\!\approx\!2.4$ and the $(1+z)$ K-tax slows the rise of $\Lmin(z)$.
+  ASKAP remains sensitivity-limited; FAST is essentially volume-limited.
+  PKS sits at the cross-over.</figcaption>
+</figure>
+
+<table>
+<caption><span class="tablabel">Table 1.</span> DM quartiles (pc cm$^{-3}$),
+cosmological model with $\sigma_{\ln L} = 1/\sqrt{2}$ and constant $\Phi_0$.</caption>
+<thead><tr><th>Telescope</th><th>$Q_{25}$</th><th>$Q_{50}$</th><th>$Q_{75}$</th><th>$Q_{90}$</th></tr></thead>
+<tbody>
+<tr><td>ASKAP</td><td>323</td><td>449</td><td>600</td><td>765</td></tr>
+<tr><td>PKS</td>  <td>1020</td><td>1581</td><td>2315</td><td>3178</td></tr>
+<tr><td>FAST</td> <td>1507</td><td>2656</td><td>4401</td><td>6152</td></tr>
+</tbody>
+</table>
+
+<div class="takeaway"><strong>Takeaway.</strong>
+The high-DM tail of a sensitivity-limited survey constrains the LF width
+$\sigma$; a volume-limited survey is largely insensitive to $\sigma$ and
+instead probes the cosmological rate density. The diameter of the
+telescope therefore selects which property the dataset can constrain.</div>
+
+<!-- =========================================================== -->
+<h2><span class="num">4.</span> Star-formation history</h2>
+
+<p>If FRBs track star formation without delay, the comoving rate density
+is no longer constant but follows the Madau--Dickinson (2014) parametrisation</p>
+
+<div class="boxed-eq">
+$$\Phi(z) \;=\; \Phi_0\,\frac{\psi(z)}{\psi(0)},\qquad
+\psi(z) \;=\; 0.015\,\frac{(1+z)^{2.7}}{1+\bigl[(1+z)/2.9\bigr]^{5.6}}\;\;
+M_\odot\,\mathrm{yr}^{-1}\Mpc^{-3}.$$
+</div>
+
+<p>The weight $\psi(z)/\psi(0)$ rises from $1$ at $z=0$ to $\approx 8.9$ at
+cosmic noon ($z\simeq 1.9$), then declines to $\approx 2.1$ by $z=5$.
+Inserted into the master expression for $d\dot N / d\dm$, this
+preferentially up-weights $z\sim 1$&ndash;$3$ and down-weights both very
+low and very high redshifts.</p>
+
+<figure>
+  <img src="figures/fig4_sfr.png" alt="Detected DM with SFR weighting">
+  <figcaption><span class="figlabel">Figure 4.</span>
+  Solid: SFR-weighted distributions. Dashed: constant-$\Phi_0$ baseline
+  from Figure 3. The most striking change is FAST's median dropping from
+  $2656$ to $2079$ as the high-$z$ tail of the SFR-declined population is
+  amputated past cosmic noon.</figcaption>
+</figure>
+
+<table>
+<caption><span class="tablabel">Table 2.</span> DM quartiles
+with versus without SFR weighting.</caption>
+<thead><tr><th>Telescope</th><th>Mode</th><th>$Q_{25}$</th><th>$Q_{50}$</th><th>$Q_{75}$</th><th>$Q_{90}$</th></tr></thead>
+<tbody>
+<tr><td>ASKAP</td><td>const $\Phi_0$</td><td>323</td><td>449</td><td>600</td><td>765</td></tr>
+<tr><td>ASKAP</td><td>SFR$(z)$</td>      <td>388</td><td>529</td><td>699</td><td>888</td></tr>
+<tr><td>PKS</td>  <td>const $\Phi_0$</td><td>1020</td><td>1581</td><td>2315</td><td>3178</td></tr>
+<tr><td>PKS</td>  <td>SFR$(z)$</td>      <td>1228</td><td>1687</td><td>2228</td><td>2827</td></tr>
+<tr><td>FAST</td> <td>const $\Phi_0$</td><td>1507</td><td>2656</td><td>4401</td><td>6152</td></tr>
+<tr><td>FAST</td> <td>SFR$(z)$</td>      <td>1453</td><td>2079</td><td>2941</td><td>4074</td></tr>
+</tbody>
+</table>
+
+<div class="takeaway"><strong>Takeaway.</strong>
+SFR weighting chiefly truncates the high-DM tail of <em>volume-limited</em>
+surveys. The contrast between the high-DM tails of PKS- and FAST-class
+surveys is therefore the cleanest probe of the SFR fall-off beyond
+cosmic noon.</div>
+
+<!-- =========================================================== -->
+<h2><span class="num">5.</span> Intra-channel DM smearing</h2>
+
+<p>A pulse of dispersion measure $\dm$ traversing a finite frequency
+channel of width $\Delta\nu_{\rm ch}$ is broadened in time by an amount
+proportional to $\dm$. Adding this broadening in quadrature with the
+intrinsic pulse width gives an effective matched-filter width
+$w_{\rm eff} = \sqrt{w^2 + t_{\rm DM}^2}$, and the radiometer equation
+gives a detection threshold</p>
+
+<div class="boxed-eq">
+$$\Smin(\dm) \;=\; \Smin^{(0)}\,\sqrt{1 + (\dm/1000)^{2}} ,$$
+</div>
+
+<p>where the normalisation has been chosen so that the smearing time
+equals the intrinsic 1\,ms width at $\dm = 1000\pccm$. The same factor
+multiplies $\Smin$ for every telescope &mdash; smearing is set by channel
+width, not dish size &mdash; and so the limiting luminosity becomes</p>
+
+<div class="boxed-eq">
+$$\Lmin(z) \;=\; 4\pi D_C^2(z)\,(1+z)\,\Smin^{(0)}\,\sqrt{1+z^2}.$$
+</div>
+
+<figure>
+  <img src="figures/fig5_smear.png" alt="Detected DM with DM smearing on top of SFR">
+  <figcaption><span class="figlabel">Figure 5.</span>
+  Solid: SFR-weighted distributions with DM smearing applied. Dashed:
+  no smearing, otherwise identical to Figure 4. The largest fractional
+  contraction is for PKS, not FAST &mdash; PKS sits exactly in the DM range
+  where the smearing factor is between $1.8$ and $3.2$.</figcaption>
+</figure>
+
+<table>
+<caption><span class="tablabel">Table 3.</span> DM quartiles with versus
+without intra-channel DM smearing (SFR weighting throughout).</caption>
+<thead><tr><th>Telescope</th><th>Mode</th><th>$Q_{25}$</th><th>$Q_{50}$</th><th>$Q_{75}$</th><th>$Q_{90}$</th></tr></thead>
+<tbody>
+<tr><td>ASKAP</td><td>no smearing</td>  <td>388</td><td>529</td><td>699</td><td>888</td></tr>
+<tr><td>ASKAP</td><td>with smearing</td><td>352</td><td>471</td><td>605</td><td>743</td></tr>
+<tr><td>PKS</td>  <td>no smearing</td>  <td>1228</td><td>1687</td><td>2228</td><td>2827</td></tr>
+<tr><td>PKS</td>  <td>with smearing</td><td>1016</td><td>1354</td><td>1711</td><td>2060</td></tr>
+<tr><td>FAST</td> <td>no smearing</td>  <td>1453</td><td>2079</td><td>2941</td><td>4074</td></tr>
+<tr><td>FAST</td> <td>with smearing</td><td>1436</td><td>2042</td><td>2846</td><td>3811</td></tr>
+</tbody>
+</table>
+
+<div class="takeaway"><strong>Takeaway.</strong>
+Counter-intuitively, DM smearing affects neither the most nor the least
+sensitive telescope most strongly &mdash; it most strongly affects the
+intermediate one. ASKAP barely reaches the DM range where smearing
+matters, and FAST has so much sensitivity headroom that even a $4\times$
+threshold degradation at $\dm \approx 4000$ does not push the population
+below detectability. PKS, however, lives exactly where the smearing
+factor bites: its $Q_{90}$ contracts by $27\%$. Inferences based on the
+high-DM tail of a Parkes-class survey are therefore highly sensitive to
+a correct treatment of intra-channel smearing.</div>
+
+<!-- =========================================================== -->
+<h2><span class="num">6.</span> Spectral index</h2>
+
+<p>Real FRBs are not flat-spectrum. With $S_\nu \propto \nu^{\alpha}$
+(so $\alpha < 0$ means fainter at higher frequencies), an FRB observed at
+$\nu_o$ is emitted at $\nu_e = (1+z)\nu_o$ with rest-frame spectral
+luminosity $L_{\nu_e} = L_{\nu_o}\,(1+z)^{\alpha}$. The K-correction
+modifies the limiting luminosity, now stacking on top of the smearing
+factor of section 5, to</p>
+
+<div class="boxed-eq">
+$$\Lmin(z) \;=\; 4\pi D_C^2(z)\,(1+z)^{1-\alpha}\,\Smin^{(0)}\,\sqrt{1+z^2} .$$
+</div>
+
+<p>For $\alpha = 0$ we recover the previous $(1+z)^1$ scaling. For
+$\alpha = -2$, the K-correction factor is $(1+z)^{3}$, giving a $9\times$
+harder detection threshold at $z = 2$ and a $25\times$ harder threshold
+at $z = 4$. This effectively re-introduces sensitivity-limited behaviour
+even at FAST.</p>
+
+<figure>
+  <img src="figures/fig6_alpha.png" alt="Detected DM with spectral index alpha=-2">
+  <figcaption><span class="figlabel">Figure 6.</span>
+  Solid: $\alpha = -2$ on top of SFR weighting and DM smearing. Dashed:
+  $\alpha = 0$ for reference (i.e. the solid curves of Figure 5). Every
+  distribution contracts inwards; FAST's PDF becomes a clean bell shape
+  peaking near $\dm \sim 1600$ rather than the broad SFR-shaped
+  distribution of Figure 4.</figcaption>
+</figure>
+
+<table>
+<caption><span class="tablabel">Table 4.</span> DM quartiles versus the
+K-correction (SFR weighting and DM smearing applied throughout).</caption>
+<thead><tr><th>Telescope</th><th>$\alpha$</th><th>$Q_{25}$</th><th>$Q_{50}$</th><th>$Q_{75}$</th><th>$Q_{90}$</th></tr></thead>
+<tbody>
+<tr><td>ASKAP</td><td>$0$</td>  <td>352</td><td>471</td><td>605</td><td>743</td></tr>
+<tr><td>ASKAP</td><td>$-2$</td> <td>254</td><td>332</td><td>414</td><td>494</td></tr>
+<tr><td>PKS</td>  <td>$0$</td>  <td>1016</td><td>1354</td><td>1711</td><td>2060</td></tr>
+<tr><td>PKS</td>  <td>$-2$</td> <td>656</td><td>847</td><td>1032</td><td>1199</td></tr>
+<tr><td>FAST</td> <td>$0$</td>  <td>1436</td><td>2042</td><td>2846</td><td>3811</td></tr>
+<tr><td>FAST</td> <td>$-2$</td> <td>1184</td><td>1591</td><td>1991</td><td>2339</td></tr>
+</tbody>
+</table>
+
+<div class="takeaway"><strong>Takeaway.</strong>
+A steep negative spectral index acts as a multiplicative
+&ldquo;sensitivity tax&rdquo; that grows with $z$, capable of converting a
+volume-limited survey into a sensitivity-limited one. Counterintuitively,
+this <em>strengthens</em> the diagnostic value of comparing small and
+large dishes: the median-DM ratio FAST/ASKAP rises from $4.3$ at
+$\alpha = 0$ to $4.8$ at $\alpha = -2$.</div>
+
+<!-- =========================================================== -->
+<h2><span class="num">7.</span> Discussion</h2>
+
+<p>The six effects act on the detected DM distribution in distinct and
+partially complementary ways:</p>
+
+<ul>
+<li><strong>Euclidean geometry</strong> sets the basic $\dm^2$ rise
+(uniform-density volume) and the $D \propto \dm_{\max}$ horizon scaling
+that survives, in modified form, throughout. The hard-horizon limit is
+unphysical but is the right starting point for intuition.</li>
+
+<li><strong>The luminosity function</strong> replaces the hard horizon
+with a smooth tail whose extent is set by $\sigma$. The shape of this
+tail at high DM is the cleanest observable for the LF width,
+<em>provided the survey is sensitivity-limited</em>; a volume-limited
+survey is essentially blind to $\sigma$.</li>
+
+<li><strong>Cosmology</strong> bends the $\dm^2$ rise back over via the
+$(1+z)^{-1}\,dV_c/dz$ kernel and slows the rise of $\Lmin(z)$ by a
+$(1+z)$ K-tax. The diameter of the telescope determines whether the
+detected distribution lives below the volume peak (sensitivity-limited)
+or near/above it (volume-limited).</li>
+
+<li><strong>Star-formation history</strong> chiefly truncates the
+high-DM tail of volume-limited surveys, narrowing FAST's distribution
+considerably while leaving ASKAP's almost untouched. The PKS&ndash;FAST
+contrast in the high-DM tail is therefore a sensitive probe of SFR(z)
+beyond cosmic noon.</li>
+
+<li><strong>Intra-channel DM smearing</strong> is an instrumental, not
+astrophysical, effect, but it has the largest impact on intermediate
+(PKS-class) telescopes &mdash; not on the most or least sensitive of the
+three. It must be included in any forward model that uses the high-DM
+tail of a Parkes-class survey for inference.</li>
+
+<li><strong>Spectral index</strong> re-introduces sensitivity limits at
+every $D$ via the K-correction $(1+z)^{1-\alpha}$, contracting all
+distributions inwards and <em>amplifying</em>, not suppressing, the
+diagnostic contrast between small and large dishes.</li>
+</ul>
+
+<p>The model is deliberately minimal. The largest remaining omissions are
+(i) intrinsic Macquart-relation scatter from host- and IGM-DM
+contributions; (ii) scatter-broadening from inhomogeneous plasma
+($\propto \dm^{2}$ to $\dm^{4}$ depending on screen geometry); (iii) a
+delay-time distribution for FRB progenitors not strictly tracking star
+formation; (iv) effective receiver multiplicities (PAFs on ASKAP,
+multibeam on FAST) that change $\Omega_{\rm FoV}$ for real surveys; and
+(v) a distribution over $\alpha$ rather than a single value. None of
+these change the qualitative conclusions above; all of them would smear
+the curves further.</p>
+
+<div class="footnote">
+Generated by the Python scripts <code>frb_doc_figures.py</code>,
+<code>frb_dndm_shapes.py</code>, <code>frb_dndm_sfr.py</code>,
+<code>frb_dndm_smear.py</code>, and <code>frb_dndm_alpha.py</code>
+in <code>/Users/mbailes</code>. Cosmology assumed: flat $\Lambda$CDM with
+$H_0 = 67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$, $\Omega_m = 0.315$.
+</div>
+
+</body>
+</html>
