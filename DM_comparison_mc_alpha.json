@@ -1,0 +1,38 @@
+{
+  "dish_sizes": [10, 20, 40, 80, 160, 320, 640],
+  "alphas_intrinsic": [-1,-2,-3,-4],
+
+  "eta": 0.6,
+  "Trec": 22.0,
+  "Tsky": 3.0,
+  "BW": 300e6,
+  "nu_cen": 1.4e9,
+  "n_comp": 16,
+  "n_chan": 1024,
+  "tsamp": 1.0e-3,
+
+  "lum_kind": "schechter",
+  "L_star": 1e15,
+  "alpha_sch": -1.5,
+  "L_min_sch": 1e10,
+  "L_max_sch": 1e16,
+  "L_std": 2.4e14,
+
+  "use_cosmology": true,
+  "use_sfr": true,
+  "use_smearing": true,
+  "use_spectral_index": true,
+  "use_beam": true,
+
+  "z_min": 0.01,
+  "z_max": 5.0,
+  "dz": 0.01,
+  "snr_threshold": 10.0,
+  "t_obs": 0.001,
+  "target_detections": 10,
+  "fscale": 2e-8,
+  "seed": 42,
+  "max_iterations": 1000000,
+
+  "out_dir": "DM_alpha"
+}
