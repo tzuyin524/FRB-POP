@@ -1,20 +1,25 @@
-import pandas as pd
+#!/usr/bin/env python
+"""
+Add NE2025 Milky Way DM (DM_ne2025) and extragalactic DM (DM_EG = DM - DM_ne2025)
+columns to an FRB CSV catalogue.
+
+Example:
+    python dm_ne2025_pipeline.py
+    python dm_ne2025_pipeline.py --csv frbs.csv --degrees
+    python dm_ne2025_pipeline.py --csv frbs.csv --output frbs_with_dm.csv --dmd 50
+"""
+import argparse
+import sys
+
 import numpy as np
-from mwprop.nemod.NE2025 import ne2025
-from astropy.coordinates import SkyCoord
+import pandas as pd
 from astropy import units as u
-# --- Configuration ---
-CSV_FILE = '/home/thsu/FRB_population/chimefrbcat2.csv'   # read from and written back to this same file
+from astropy.coordinates import SkyCoord
+from mwprop.nemod.NE2025 import ne2025
 
-RA_COL = 'ra'      # RA column name
-DEC_COL = 'dec'    # Dec column name
-DM_COL = 'dm_fitb'      # observed DM column name
-
-DEGREES = False    # True if RA/Dec are decimal degrees, False for hh:mm:ss / dd:mm:ss
-DMD = 50           # dmd passed to ne2025
 
 def dm_mw_ne2025(ra, dec, degrees=False, dmd=50):
-    '''Return NE2025 DM_MW for one position (np.nan if it can't be computed).'''
+    """Return NE2025 DM_MW for one position (np.nan if it can't be computed)."""
     try:
         if degrees:
             c = SkyCoord(float(ra) * u.deg, float(dec) * u.deg)
@@ -32,24 +37,61 @@ def dm_mw_ne2025(ra, dec, degrees=False, dmd=50):
         )
         return float(modouts['DM'])
     except Exception as e:
-        print(f'Could not compute DM for RA={ra}, Dec={dec}: {e}')
+        print(f'Could not compute DM for RA={ra}, Dec={dec}: {e}', file=sys.stderr)
         return np.nan
 
-df = pd.read_csv(CSV_FILE)
 
-for col in (RA_COL, DEC_COL):
-    if col not in df.columns:
-        raise KeyError(f"Column '{col}' not found. Available columns: {list(df.columns)}")
+def parse_args(argv=None):
+    p = argparse.ArgumentParser(
+        description='Compute NE2025 Milky Way DM and extragalactic DM for an FRB CSV.',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    p.add_argument('--csv', default='frbs.csv', help='Input CSV file')
+    p.add_argument('--output', default=None,
+                   help='Output CSV file (default: overwrite the input CSV)')
+    p.add_argument('--ra-col', default='RA', help='RA column name')
+    p.add_argument('--dec-col', default='Dec', help='Dec column name')
+    p.add_argument('--dm-col', default='DM', help='Observed DM column name')
+    p.add_argument('--degrees', action='store_true',
+                   help='RA/Dec are decimal degrees (default: hh:mm:ss / dd:mm:ss)')
+    p.add_argument('--dmd', type=float, default=50, help='dmd passed to ne2025')
+    p.add_argument('--mw-col', default='DM_ne2025', help='Output column for MW DM')
+    
+    p.add_argument('--eg-col', default='DM_EG', help='Output column for extragalactic DM')
+    p.add_argument('--decimals', type=int, default=2, help='Rounding decimals')
+    return p.parse_args(argv)
 
-df['DM_ne2025'] = [
-    round(dm_mw_ne2025(ra, dec, degrees=DEGREES, dmd=DMD), 2)
-    for ra, dec in zip(df[RA_COL], df[DEC_COL])
-]
 
-if DM_COL in df.columns:
-    df['DM_EG'] = (pd.to_numeric(df[DM_COL], errors='coerce') - df['DM_ne2025']).round(2)
-else:
-    print(f"Warning: DM column '{DM_COL}' not found, so DM_EG was not added. Available columns: {list(df.columns)}")
+def run(args):
+    df = pd.read_csv(args.csv)
 
-df.head()
-df.to_csv(CSV_FILE, index=False)
+    for col in (args.ra_col, args.dec_col):
+        if col not in df.columns:
+            raise KeyError(f"Column '{col}' not found. Available columns: {list(df.columns)}")
+
+    df[args.mw_col] = [
+        round(dm_mw_ne2025(ra, dec, degrees=args.degrees, dmd=args.dmd), args.decimals)
+        for ra, dec in zip(df[args.ra_col], df[args.dec_col])
+    ]
+
+    if args.dm_col in df.columns:
+        df[args.eg_col] = (
+            pd.to_numeric(df[args.dm_col], errors='coerce') - df[args.mw_col]
+        ).round(args.decimals)
+    else:
+        print(f"Warning: DM column '{args.dm_col}' not found, so {args.eg_col} was not added. "
+              f"Available columns: {list(df.columns)}", file=sys.stderr)
+
+    out = args.output or args.csv
+    df.to_csv(out, index=False)
+    print(f'Wrote {len(df)} rows to {out}')
+    print(df.head())
+    return df
+
+
+def main(argv=None):
+    run(parse_args(argv))
+
+
+if __name__ == '__main__':
+    main()

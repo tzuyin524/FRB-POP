@@ -47,7 +47,7 @@ MAX_ITER = 10000
 SEED = 42
 
 # luminosity function (Schechter)
-L_STAR, ALPHA_SCH = 3e13, -1.2
+L_STAR, ALPHA_SCH = 5e13, -1.2
 L_MIN_SCH, L_MAX_SCH = 1e6, 1e16
 
 # redshift grid
