@@ -47,7 +47,7 @@ MAX_ITER = 10000
 SEED = 42
 
 # luminosity function (Schechter)
-L_STAR, ALPHA_SCH = 5e13, -1.2
+L_STAR, ALPHA_SCH = 1e13, -1.2
 L_MIN_SCH, L_MAX_SCH = 1e6, 1e16
 
 # redshift grid
@@ -111,13 +111,14 @@ Tsys_eff = len(Tsys_nu) / np.sum(1.0 / Tsys_nu)
 DMs = 1000.0 * z_array
 wi_z = WI_INTRINSIC * (1 + z_array)
 w_DM = 8.3e-6 * DMs * (BW_chan / 1e6) / (nu0 / 1e9) ** 3
-w_scat = np.array([
-    np.sqrt(np.mean((1.9e-7 * d ** 1.5 * (1 + d ** 3 * 3.55e-5) * 3 * freq_powers_scatter * 1e-3) ** 2))
-    for d in DMs])
-w_samp = P["tsamp"] * 1e-3          # same convention as the notebook
+# w_scat = np.array([
+#     np.sqrt(np.mean((1.9e-7 * d ** 1.5 * (1 + d ** 3 * 3.55e-5) * 3 * freq_powers_scatter * 1e-3) ** 2))
+#     for d in DMs])
+w_scat = 0
+w_samp = P["tsamp"]          # same convention as the notebook
 w_obs = np.sqrt(wi_z ** 2 + w_DM ** 2 + w_scat ** 2 + w_samp ** 2) if USE_SMEARING else wi_z
 z_factor = (1 + z_array) ** (-1 - alpha_intrinsic)
-S_SNR_CONST = np.sqrt(BW_comp * t_obs * Np) / Tsys_nu      # array over frequency
+S_SNR_CONST = np.sqrt(BW_comp * w_obs * Np) / Tsys_nu      # array over frequency
 
 # ----------------------------------------------------------------------------
 def weighted_percentiles(x, w, qs):
